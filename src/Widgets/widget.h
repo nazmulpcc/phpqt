@@ -10,6 +10,7 @@ public:
     QWidget *native;
 
     QWidget *getNative();
+    virtual void setGeometry(Php::Parameters &params);
     void setNative(QWidget * n);
     virtual void show();
 
