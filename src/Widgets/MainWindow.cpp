@@ -1,15 +1,14 @@
 #include<phpcpp.h>
 #include "mainwindow.h"
 #include "label.h"
-#include "widget.h"
 #include <QtWidgets/QWidget>
 #include <iostream>
 #include <QtWidgets/QPushButton>
 
 void MainWindow::__construct()
 {
-    this->native = new QMainWindow;
-    QPushButton button("&Testing", this->native);
+    this->setNative(new QMainWindow);
+    // QPushButton button("&Testing", this->native);
 }
 
 // void MainWindow::addToolBar(Php::Parameters &params)
@@ -35,4 +34,14 @@ void MainWindow::setCentralWidget(Php::Parameters &params)
 void MainWindow::show()
 {
     this->native->show();
+}
+
+QMainWindow* MainWindow::getNative()
+{
+    return this->native;
+}
+
+void MainWindow::setNative(QMainWindow *n)
+{
+    this->native = n;
 }

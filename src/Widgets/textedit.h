@@ -1,15 +1,17 @@
 #include <phpcpp.h>
-#include "widget.h"
 #include <QtWidgets/QTextEdit>
 
-class TextEdit : public Widget
+class TextEdit : public Php::Base
 {
 private:
-    QTextEdit *native;
+    QTextEdit* native;
 
 public:
     void __construct();
     void show();
+
+    QTextEdit* getNative();
+    void setNative(QTextEdit *n);
 
     static Php::Class<TextEdit> _DEFINITION()
     {

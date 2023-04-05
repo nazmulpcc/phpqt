@@ -1,0 +1,5 @@
+.idea
+.vscode
+test
+*.o
+*.so

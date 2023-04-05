@@ -1,17 +1,19 @@
 #include<phpcpp.h>
-#include "widget.h"
 #include <QtWidgets/QMainWindow>
 
-class MainWindow : public Widget
+class MainWindow : public Php::Base
 {
 private:
-    QMainWindow *native;
-
+    QMainWindow* native;
+    
 public:
     void __construct();
     // void addToolBar(Php::Parameters &params);
     void setCentralWidget(Php::Parameters &params);
     void show();
+
+    QMainWindow* getNative();
+    void setNative(QMainWindow *n);
 
     static Php::Class<MainWindow> _DEFINITION()
     {

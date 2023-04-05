@@ -1,17 +1,18 @@
 #include<phpcpp.h>
 #include <QtWidgets/QLabel>
-#include "widget.h"
 
-class Label : public Widget
+class Label : public Php::Base
 {
 private:
-    QLabel *native;
+    QLabel* native;
 
 public:
     void __construct(Php::Parameters &params);
-    void show();
     void setText(Php::Parameters &params);
+    void show();
+
     QLabel* getNative();
+    void setNative(QLabel *n);
 
     static Php::Class<Label> _DEFINITION()
     {
