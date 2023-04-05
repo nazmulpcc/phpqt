@@ -2,7 +2,7 @@
 
 $app = new \Qt\Widgets\Application();
 $editor = new \Qt\Widgets\TextEdit;
-$label = new \Qt\Widgets\Label("Hello World");
+// $label = new \Qt\Widgets\Label("Hello World");
 // $label->setText("Good Morning");
 // $label->show();
 
@@ -11,16 +11,8 @@ $window->setCentralWidget($editor);
 
 $button = new \Qt\Widgets\PushButton("Click Me", $window);
 
-// $button->onClicked(function (){
-//     echo "Button Clicked\n";
-// });
-
-$button->onPressed(function () {
-    echo "Button Pressed\n";
-});
-
-$button->onReleased(function () {
-    echo "Button Released\n";
+$button->onClicked(function (){
+    echo "Button Clicked\n";
 });
 
 $window->show();

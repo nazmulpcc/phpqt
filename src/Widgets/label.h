@@ -1,18 +1,17 @@
+#include "../macros.h"
+#include "widget.h"
 #include<phpcpp.h>
 #include <QtWidgets/QLabel>
 
-class Label : public Php::Base
+class Label : public Widget
 {
 private:
-    QLabel* native;
+    QLabel* label;
 
 public:
     void __construct(Php::Parameters &params);
     void setText(Php::Parameters &params);
-    void show();
-
-    QLabel* getNative();
-    void setNative(QLabel *n);
+    OVERRIDE_METHOD(show)
 
     static Php::Class<Label> _DEFINITION()
     {

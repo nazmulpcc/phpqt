@@ -1,4 +1,5 @@
 #include <phpcpp.h>
+#include "src/Widgets/widget.h"
 #include "src/Widgets/label.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/mainwindow.h"
@@ -12,6 +13,8 @@ extern "C" {
     PHPCPP_EXPORT void *get_module()
     {
         static Php::Extension extension("phpqt", "1.0");
+
+        extension.add(std::move(Widget::_DEFINITION()));
 
         extension.add(std::move(Label::_DEFINITION()));
 

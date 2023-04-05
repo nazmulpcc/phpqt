@@ -1,28 +1,24 @@
+#include "../macros.h"
+#include "widget.h"
 #include<phpcpp.h>
 #include <QtWidgets/QMainWindow>
 
-class MainWindow : public Php::Base
+class MainWindow : public Widget
 {
 private:
-    QMainWindow* native;
-    
+    QMainWindow *mainWindow;
+
 public:
     void __construct();
     // void addToolBar(Php::Parameters &params);
     void setCentralWidget(Php::Parameters &params);
-    void show();
-
-    QMainWindow* getNative();
-    void setNative(QMainWindow *n);
+    OVERRIDE_METHOD(show)
 
     static Php::Class<MainWindow> _DEFINITION()
     {
         Php::Class<MainWindow> mainwindow ("Qt\\Widgets\\MainWindow");
 
         mainwindow.method<&MainWindow::__construct>("__construct");
-        // mainwindow.method("addToolBar", {
-        //     Php::ByVal("title", Php::Type::String)
-        // });
         mainwindow.method<&MainWindow::setCentralWidget>("setCentralWidget", {
             Php::ByVal("title", "Qt\\Widgets\\Widget")
         });

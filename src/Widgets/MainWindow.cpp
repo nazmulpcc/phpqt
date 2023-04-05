@@ -4,19 +4,13 @@
 #include <QtWidgets/QWidget>
 #include <iostream>
 #include <QtWidgets/QPushButton>
+#include "../macros.h"
 
 void MainWindow::__construct()
 {
     this->setNative(new QMainWindow);
-    // QPushButton button("&Testing", this->native);
+    this->mainWindow = dynamic_cast<QMainWindow *>(this->native);
 }
-
-// void MainWindow::addToolBar(Php::Parameters &params)
-// {
-//     QString title = QString::fromStdString((std::string) params[0]);
-
-//     this->native->addToolBar(title);
-// }
 
 void MainWindow::setCentralWidget(Php::Parameters &params)
 {
@@ -27,21 +21,8 @@ void MainWindow::setCentralWidget(Php::Parameters &params)
     {
         Php::out << "found null" << std::endl;
     }
-    
-    this->native->setCentralWidget(widget->getNative());
+
+    this->mainWindow->setCentralWidget(widget->getNative());
 }
 
-void MainWindow::show()
-{
-    this->native->show();
-}
-
-QMainWindow* MainWindow::getNative()
-{
-    return this->native;
-}
-
-void MainWindow::setNative(QMainWindow *n)
-{
-    this->native = n;
-}
+FORWARD_CALL(MainWindow, Widget, show)
