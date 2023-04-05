@@ -1,5 +1,4 @@
 #include "textedit.h"
-#include "../macros.h"
 #include <QtWidgets/QTextEdit>
 
 void TextEdit::__construct()

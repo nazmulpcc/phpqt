@@ -1,6 +1,5 @@
 #include <phpcpp.h>
 #include "label.h"
-#include "../macros.h"
 
 void Label::__construct(Php::Parameters &params)
 {

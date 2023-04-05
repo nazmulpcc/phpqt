@@ -1,10 +1,7 @@
 #include<phpcpp.h>
 #include "mainwindow.h"
 #include "widget.h"
-#include <QtWidgets/QWidget>
 #include <iostream>
-#include <QtWidgets/QPushButton>
-#include "../macros.h"
 
 void MainWindow::__construct()
 {
