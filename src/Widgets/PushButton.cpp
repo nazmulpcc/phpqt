@@ -4,7 +4,7 @@
 
 void PushButton::__construct(Php::Parameters &params)
 {
-    QString name = QString::fromStdString((std::string)params[0]);
+    QString name = QString::fromStdString(params[0].stringValue());
     MainWindow *parent = (MainWindow *) params[1].implementation();
 
     this->native = new QPushButton(name, parent->getNative());

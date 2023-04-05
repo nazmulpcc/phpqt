@@ -14,7 +14,7 @@ void Label::__construct(Php::Parameters &params)
 
 void Label::setText(Php::Parameters &params)
 {
-    QString label = QString::fromStdString((std::string)params[0]);
+    QString label = QString::fromStdString(params[0].stringValue());
     this->label->setText(label);
 }
 
