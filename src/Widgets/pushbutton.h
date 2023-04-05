@@ -1,16 +1,20 @@
+#include "widget.h"
+#include "../macros.h"
 #include<phpcpp.h>
 #include<QtWidgets/QPushButton>
 
-class PushButton : public Php::Base
+class PushButton : public Widget
 {
 private:
-    QPushButton *native;
+    QPushButton *button;
 
 public:
     void __construct(Php::Parameters &params);
     void onClicked(Php::Parameters &params);
     void onPressed(Php::Parameters &params);
     void onReleased(Php::Parameters &params);
+
+    OVERRIDE_METHOD(show)
 
     static Php::Class<PushButton> _DEFINITION()
     {
@@ -20,6 +24,7 @@ public:
             Php::ByRef("parent", Php::Type::Object, true)
         });
 
+        pushbutton.method<&PushButton::show>("show");
         pushbutton.method<&PushButton::onPressed>("onPressed", {Php::ByVal("callback", Php::Type::Callable, true)});
         pushbutton.method<&PushButton::onClicked>("onClicked", {Php::ByVal("callback", Php::Type::Callable, true)});
         pushbutton.method<&PushButton::onReleased>("onReleased", {Php::ByVal("callback", Php::Type::Callable, true)});

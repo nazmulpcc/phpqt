@@ -1,3 +1,4 @@
+#include "../macros.h"
 #include <phpcpp.h>
 #include "pushbutton.h"
 #include "mainwindow.h"
@@ -8,22 +9,25 @@ void PushButton::__construct(Php::Parameters &params)
     MainWindow *parent = (MainWindow *) params[1].implementation();
 
     this->native = new QPushButton(name, parent->getNative());
+    this->button = dynamic_cast<QPushButton *>(this->native);
 }
 
 void PushButton::onPressed(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::pressed, callback);
+    this->button->connect(this->button, &QPushButton::pressed, callback);
 }
 
 void PushButton::onClicked(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::clicked, callback);
+    this->button->connect(this->button, &QPushButton::clicked, callback);
 }
 
 void PushButton::onReleased(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::released, callback);
+    this->button->connect(this->button, &QPushButton::released, callback);
 }
+
+FORWARD_CALL(PushButton, Widget, show)
