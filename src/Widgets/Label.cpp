@@ -16,5 +16,3 @@ void Label::setText(Php::Parameters &params)
     QString label = QString::fromStdString(params[0].stringValue());
     this->label->setText(label);
 }
-
-FORWARD_CALL(Label, Widget, show)

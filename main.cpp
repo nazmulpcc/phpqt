@@ -14,17 +14,26 @@ extern "C" {
     {
         static Php::Extension extension("phpqt", "1.0");
 
-        extension.add(std::move(Widget::_DEFINITION()));
+        auto widget = Widget::_DEFINITION();
 
-        extension.add(std::move(Label::_DEFINITION()));
+        auto application = Application::_DEFINITION();
+        auto label = Label::_DEFINITION();
+        auto mainwindow = MainWindow::_DEFINITION();
+        auto pushbutton = PushButton::_DEFINITION();
+        auto textedit = TextEdit::_DEFINITION();
 
-        extension.add(std::move(Application::_DEFINITION()));
+        label.extends(widget);
+        mainwindow.extends(widget);
+        pushbutton.extends(widget);
+        textedit.extends(widget);
 
-        extension.add(std::move(MainWindow::_DEFINITION()));
-
-        extension.add(std::move(TextEdit::_DEFINITION()));
-
-        extension.add(std::move(PushButton::_DEFINITION()));
+        extension
+            .add(widget)
+            .add(application)
+            .add(label)
+            .add(mainwindow)
+            .add(pushbutton)
+            .add(textedit);
 
         return extension;
     }

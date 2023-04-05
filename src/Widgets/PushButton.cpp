@@ -28,5 +28,3 @@ void PushButton::onReleased(Php::Parameters &params)
     Php::Value callback = params[0];
     this->button->connect(this->button, &QPushButton::released, callback);
 }
-
-FORWARD_CALL(PushButton, Widget, show)

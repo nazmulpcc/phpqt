@@ -25,7 +25,3 @@ void MainWindow::setCentralWidget(Php::Parameters &params)
 void MainWindow::setWindowTitle(Php::Parameters &params) {
     this->mainWindow->setWindowTitle(QString::fromStdString(params[0].stringValue()));
 }
-
-FORWARD_CALL_WITH_PARAMS(MainWindow, Widget, setGeometry)
-
-FORWARD_CALL(MainWindow, Widget, show)

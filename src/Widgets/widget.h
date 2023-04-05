@@ -16,7 +16,15 @@ public:
 
     static Php::Class<Widget> _DEFINITION()
     {
-        Php::Class<Widget> widget("Qt\\Widgets\\Widget", Php::Abstract);
+        Php::Class<Widget> widget("Qt\\Widgets\\Widget");
+
+        widget.method<&Widget::setGeometry>("setGeometry", {
+                Php::ByVal("x", Php::Type::Numeric, true),
+                Php::ByVal("y", Php::Type::Numeric, true),
+                Php::ByVal("w", Php::Type::Numeric, true),
+                Php::ByVal("h", Php::Type::Numeric, true),
+        });
+        widget.method<&Widget::show>("show");
 
         return widget;
     }

@@ -1,4 +1,3 @@
-#include "../macros.h"
 #include "widget.h"
 #include<phpcpp.h>
 #include <QtWidgets/QLabel>
@@ -11,7 +10,6 @@ private:
 public:
     void __construct(Php::Parameters &params);
     void setText(Php::Parameters &params);
-    OVERRIDE_METHOD(show)
 
     static Php::Class<Label> _DEFINITION()
     {
@@ -20,7 +18,6 @@ public:
             Php::ByVal("text", Php::Type::String, false)
         });
         label.method<&Label::setText>("setText", {Php::ByVal("text", Php::Type::String, false)});
-        label.method<&Label::show>("show");
 
         return label;
     }
