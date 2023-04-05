@@ -18,7 +18,7 @@ public:
         Php::Class<PushButton> pushbutton("Qt\\Widgets\\PushButton");
         pushbutton.method<&PushButton::__construct>("__construct", {
             Php::ByVal("name", Php::Type::String, true),
-            Php::ByRef("parent", Php::Type::Object, true)
+            Php::ByRef("parent", Php::Type::Object, false)
         });
 
         pushbutton.method<&PushButton::onPressed>("onPressed", {Php::ByVal("callback", Php::Type::Callable, true)});

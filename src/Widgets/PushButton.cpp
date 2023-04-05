@@ -4,11 +4,21 @@
 
 void PushButton::__construct(Php::Parameters &params)
 {
-    QString name = QString::fromStdString(params[0].stringValue());
-    MainWindow *parent = (MainWindow *) params[1].implementation();
+    std::string text;
+    Widget *parent;
 
-    this->native = new QPushButton(name, parent->getNative());
-    this->button = dynamic_cast<QPushButton *>(this->native);
+    if (params.size() == 0){
+        text = "";
+        parent = nullptr;
+    }
+    if (params.size() >= 1){
+        text = params[0].stringValue();
+    }
+    if (params.size() == 2){
+        parent = params[1].implementation<Widget>();
+    }
+    this->button = new QPushButton(QString::fromStdString(text), parent->getNative());
+    this->native = this->button;
 }
 
 void PushButton::onPressed(Php::Parameters &params)
