@@ -8,3 +8,13 @@ void TextEdit::__construct()
 }
 
 FORWARD_CALL(TextEdit, Widget, show)
+
+Php::Value TextEdit::toPlainText()
+{
+    return Php::Value(this->textedit->toPlainText().toStdString());
+}
+
+void TextEdit::copy()
+{
+    this->textedit->copy();
+}
