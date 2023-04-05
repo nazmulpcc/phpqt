@@ -1,49 +1,7 @@
-#
-#   Makefile template
-#
-#   This is an example Makefile that can be used by anyone who is building
-#   his or her own PHP extensions using the PHP-CPP library. 
-#
-#   In the top part of this file we have included variables that can be
-#   altered to fit your configuration, near the bottom the instructions and
-#   dependencies for the compiler are defined. The deeper you get into this
-#   file, the less likely it is that you will have to change anything in it.
-#
+NAME = phpqt
 
-#
-#   Name of your extension
-#
-#   This is the name of your extension. Based on this extension name, the
-#   name of the library file (name.so) and the name of the config file (name.ini)
-#   are automatically generated
-#
+INI_DIR = $(shell php-config --configure-options | sed -n 's/.*--with-config-file-scan-dir=\([^ ]*\).*/\1/p')
 
-NAME                =   phpqt
-
-#
-#   Php.ini directories
-#
-#   In the past, PHP used a single php.ini configuration file. Today, most
-#   PHP installations use a conf.d directory that holds a set of config files,
-#   one for each extension. Use this variable to specify this directory.
-#
-#   In Ubuntu 14.04 Apache 2.4 is used, which uses the mods-available directory
-#   instead of a conf.d directory. In 16.04 the directory changed yet again.
-#   This has to be checked.
-#
-
-# UBUNTU_MAJOR  := $(shell /usr/bin/lsb_release -r -s | cut -f1 -d.)
-# OVER_SIXTEEN  := $(shell echo "${UBUNTU_MAJOR} >= 16" | bc)
-# OVER_FOURTEEN := $(shell echo "${UBUNTU_MAJOR} >= 14" | bc)
-
-# ifeq (${OVER_SIXTEEN}, 1)
-#     INI_DIR     =   /etc/php/7.0/mods-available/
-# else ifeq (${OVER_FOURTEEN}, 1)
-#     INI_DIR     =   /etc/php5/mods-available/
-# else
-#     INI_DIR     =   /etc/php5/conf.d/
-# endif
-INI_DIR = /opt/homebrew/etc/php/8.1/conf.d
 #
 #   The extension dirs
 #
@@ -75,8 +33,8 @@ INI                 =   ${NAME}.ini
 #   library file. By default, g++ (the GNU C++ compiler) is used for both.
 #
 
-COMPILER            =   g++
-LINKER              =   g++
+COMPILER = g++
+LINKER = g++
 
 #
 #   Compiler and linker flags
@@ -109,9 +67,9 @@ LINKER_FLAGS       += ${QT_FLAGS}
 #   So you can probably leave this as it is
 #
 
-RM                  =   rm -f
-CP                  =   cp -f
-MKDIR               =   mkdir -p
+RM    = rm -f
+CP    = cp -f
+MKDIR = mkdir -p
 
 #
 #   All source files are simply all *.cpp files found in the current directory
