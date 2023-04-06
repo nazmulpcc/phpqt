@@ -5,8 +5,8 @@
 
 void MainWindow::__construct()
 {
-    this->setNative(new QMainWindow);
-    this->mainWindow = dynamic_cast<QMainWindow *>(this->native);
+    this->native = new QMainWindow;
+    setNative(this->native);
 }
 
 void MainWindow::setCentralWidget(Php::Parameters &params)
@@ -19,5 +19,5 @@ void MainWindow::setCentralWidget(Php::Parameters &params)
         Php::out << "found null" << std::endl;
     }
 
-    this->mainWindow->setCentralWidget(widget->getNative());
+    this->native->setCentralWidget(widget->getNative());
 }

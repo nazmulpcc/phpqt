@@ -18,24 +18,24 @@ void PushButton::__construct(Php::Parameters &params)
     if (params.size() == 2){
         parent = params[1].implementation<Widget>()->getNative();
     }
-    this->button = new QPushButton(QString::fromStdString(text), parent);
-    this->native = this->button;
+    this->native = new QPushButton(QString::fromStdString(text), parent);
+    setNative(this->native);
 }
 
 void PushButton::onPressed(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->button->connect(this->button, &QPushButton::pressed, callback);
+    this->native->connect(this->native, &QPushButton::pressed, callback);
 }
 
 void PushButton::onClicked(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->button->connect(this->button, &QPushButton::clicked, callback);
+    this->native->connect(this->native, &QPushButton::clicked, callback);
 }
 
 void PushButton::onReleased(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->button->connect(this->button, &QPushButton::released, callback);
+    this->native->connect(this->native, &QPushButton::released, callback);
 }

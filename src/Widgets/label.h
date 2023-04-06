@@ -5,7 +5,7 @@
 class Label : public Widget
 {
 private:
-    QLabel* label;
+    QLabel* native;
 
 public:
     void __construct(Php::Parameters &params);

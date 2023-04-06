@@ -4,7 +4,7 @@
 void Label::__construct(Php::Parameters &params)
 {
     this->native = new QLabel;
-    this->label = dynamic_cast<QLabel *>(this->native);
+    setNative(this->native);
     if (!params.empty())
     {
         this->setText(params);
@@ -14,5 +14,5 @@ void Label::__construct(Php::Parameters &params)
 void Label::setText(Php::Parameters &params)
 {
     QString label = QString::fromStdString(params[0].stringValue());
-    this->label->setText(label);
+    this->native->setText(label);
 }

@@ -5,7 +5,7 @@
 class PushButton : public Widget
 {
 private:
-    QPushButton *button;
+    QPushButton *native;
 
 public:
     void __construct(Php::Parameters &params);

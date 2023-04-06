@@ -5,7 +5,7 @@
 class TextEdit : public Widget
 {
 private:
-    QTextEdit *textedit;
+    QTextEdit *native;
 
 public:
     void __construct(Php::Parameters &params);

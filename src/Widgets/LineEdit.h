@@ -8,7 +8,7 @@
 
 class LineEdit : public Widget {
 private:
-    QLineEdit *concrete;
+    QLineEdit *native;
 
 public:
     void __construct(Php::Parameters &params);

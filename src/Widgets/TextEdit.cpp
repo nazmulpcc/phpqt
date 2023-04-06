@@ -21,16 +21,16 @@ void TextEdit::__construct(Php::Parameters &params)
     if (params.size() == 2){
         parent = params[1].implementation<Widget>()->getNative();
     }
-    this->textedit = new QTextEdit(QString::fromStdString(text), parent);
-    this->native = this->textedit;
+    this->native = new QTextEdit(QString::fromStdString(text), parent);
+    setNative(this->native);
 }
 
 Php::Value TextEdit::toPlainText()
 {
-    return Php::Value(this->textedit->toPlainText().toStdString());
+    return Php::Value(this->native->toPlainText().toStdString());
 }
 
 void TextEdit::copy()
 {
-    this->textedit->copy();
+    this->native->copy();
 }

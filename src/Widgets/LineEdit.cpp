@@ -22,57 +22,57 @@ void LineEdit::__construct(Php::Parameters &params)
             throw Php::Exception("Invalid parameter supplied");
         }
     }
-    this->concrete = new QLineEdit(QString::fromStdString(contents), parent);
-    this->native = this->concrete;
+    this->native = new QLineEdit(QString::fromStdString(contents), parent);
+    setNative(this->native);
 }
 
 Php::Value LineEdit::inputMask()
 {
-    return Php::Value(this->concrete->inputMask().toStdString());
+    return Php::Value(this->native->inputMask().toStdString());
 }
 
 Php::Value LineEdit::isModified()
 {
-    return Php::Value(this->concrete->isModified());
+    return Php::Value(this->native->isModified());
 }
 
 Php::Value LineEdit::isReadOnly()
 {
-    return Php::Value(this->concrete->isReadOnly());
+    return Php::Value(this->native->isReadOnly());
 }
 
 Php::Value LineEdit::placeholderText() {
-    return Php::Value(this->concrete->placeholderText().toStdString());
+    return Php::Value(this->native->placeholderText().toStdString());
 }
 
 void LineEdit::setEchoMode(Php::Parameters &params)
 {
     auto mode = static_cast<QLineEdit::EchoMode>(params[0].numericValue());
-    this->concrete->setEchoMode(mode);
+    this->native->setEchoMode(mode);
 }
 
 void LineEdit::setInputMask(Php::Parameters &params)
 {
-    this->concrete->setInputMask(QString::fromStdString(params[0].stringValue()));
+    this->native->setInputMask(QString::fromStdString(params[0].stringValue()));
 }
 
 void LineEdit::setMaxLength(Php::Parameters &params)
 {
-    this->concrete->setMaxLength(params[0].numericValue());
+    this->native->setMaxLength(params[0].numericValue());
 }
 
 void LineEdit::setPlaceholderText(Php::Parameters &params) {
-    this->concrete->setPlaceholderText(QString::fromStdString(params[0].stringValue()));
+    this->native->setPlaceholderText(QString::fromStdString(params[0].stringValue()));
 }
 
 void LineEdit::setReadOnly(Php::Parameters &params)
 {
-    this->concrete->setReadOnly(params[0].boolValue());
+    this->native->setReadOnly(params[0].boolValue());
 }
 
 void LineEdit::setSelection(Php::Parameters &params)
 {
-    this->concrete->setSelection(params[0].numericValue(), params[1].numericValue());
+    this->native->setSelection(params[0].numericValue(), params[1].numericValue());
 }
 
 void LineEdit::setValidator(Php::Parameters &params)
@@ -82,5 +82,5 @@ void LineEdit::setValidator(Php::Parameters &params)
 
 Php::Value LineEdit::text()
 {
-    return Php::Value(this->concrete->text().toStdString());
+    return Php::Value(this->native->text().toStdString());
 }

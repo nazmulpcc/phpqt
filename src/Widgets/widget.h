@@ -6,9 +6,10 @@
 
 class Widget : public Php::Base
 {
-public:
+private:
     QWidget *native;
 
+public:
     QWidget *getNative();
     void setNative(QWidget * n);
 

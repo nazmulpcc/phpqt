@@ -5,7 +5,7 @@
 class MainWindow : public Widget
 {
 private:
-    QMainWindow *mainWindow;
+    QMainWindow *native;
 
 public:
     void __construct();
