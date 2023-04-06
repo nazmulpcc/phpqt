@@ -10,6 +10,8 @@ private:
     QWidget *native;
 
 public:
+    Widget();
+    
     QWidget *getNative();
     void setNative(QWidget * n);
 
@@ -18,6 +20,7 @@ public:
     void setFocus();
     void setGeometry(Php::Parameters &params);
     void setHidden(Php::Parameters &params);
+    void setLayout(Php::Parameters &params);
     void setStyleSheet(Php::Parameters &params);
     void setWindowTitle(Php::Parameters &params);
     void show();
@@ -44,6 +47,9 @@ public:
         });
         definition.method<&Widget::setHidden>("setHidden", {
             Php::ByVal("hidden", Php::Type::Bool, true)
+        });
+        definition.method<&Widget::setLayout>("setLayout", {
+            Php::ByVal("layout", Php::Type::Object, true)
         });
         definition.method<&Widget::setStyleSheet>("setStyleSheet", {
             Php::ByVal("style", Php::Type::String, true),

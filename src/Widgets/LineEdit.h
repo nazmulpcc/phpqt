@@ -56,6 +56,7 @@ public:
             Php::ByVal("end", Php::Type::Numeric, true)
         });
         lineEdit.method<&LineEdit::setValidator>("setValidator", {Php::ByVal("validator", Php::Type::Object, true)});
+        lineEdit.method<&LineEdit::text>("text");
 
         return lineEdit;
     }

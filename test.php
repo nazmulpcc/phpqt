@@ -6,26 +6,30 @@ $window = new \Qt\Widgets\MainWindow;
 $window->setWindowTitle("Hello World");
 $window->setGeometry(0, 100, 1000, 500);
 
-$editor = new \Qt\Widgets\TextEdit("", $window);
-$input = new \Qt\Widgets\LineEdit("", $window);
-$button = new \Qt\Widgets\PushButton("Click Me", $window);
-$copyButton = new \Qt\Widgets\PushButton("Copy", $window);
+$layout = new \Qt\Widgets\FormLayout($window);
 
-$copyButton->onClicked(function () use($editor) {
-    $editor->copy();
-    echo "copied\n";
-});
-$button->onClicked(function () use($input) {
-    $input->setReadOnly(! $input->isReadOnly());
-    $input->setSelection(0, 5);
-});
-$button->setGeometry(0, 0, 100, 50);
-$copyButton->setGeometry(100, 0, 100, 50);
-$input->setGeometry(0, 50, 1000, 100);
-$input->setPlaceholderText("john@example.com");
-// $input->setInputMask("0000-00-00");
-$input->setMaxLength(8);
+$email = new \Qt\Widgets\LineEdit();
+$password = new \Qt\Widgets\LineEdit();
+$signIn = new \Qt\Widgets\PushButton("Log In");
 
+$password->setEchoMode(\Qt\Widgets\LineEdit::Password);
+
+$signIn->onClicked(function () use($email, $password, $window) {
+    $mail = $email->text();
+    $password = $password->text();
+    echo "Loggin In with {$mail} and {$password}\n";
+    sleep(5);
+    $window->close();
+});
+
+$layout->addRow("Email:", $email);
+$layout->addRow("Password:", $password);
+$layout->addRow($signIn);
+
+$widget = new \Qt\Widgets\Widget();
+$widget->setLayout($layout);
+
+$window->setCentralWidget($widget);
 
 $window->show();
 

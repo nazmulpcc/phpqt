@@ -1,7 +1,13 @@
 #include "widget.h"
+#include "Layout.h"
 #include <QtWidgets/QWidget>
 
-QWidget* Widget::getNative()
+Widget::Widget()
+{
+    native = new QWidget;
+}
+
+QWidget *Widget::getNative()
 {
     return this->native;
 }
@@ -24,6 +30,11 @@ void Widget::setFocus()
 void Widget::setHidden(Php::Parameters &params)
 {
     this->native->setHidden(params[0].boolValue());
+}
+
+void Widget::setLayout(Php::Parameters &params)
+{
+    this->native->setLayout(params[0].implementation<Layout>()->getNative());
 }
 
 void Widget::setStyleSheet(Php::Parameters &params)
