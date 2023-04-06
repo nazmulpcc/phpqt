@@ -1,6 +1,5 @@
 #include <phpcpp.h>
 #include "pushbutton.h"
-#include "mainwindow.h"
 
 void PushButton::__construct(Php::Parameters &params)
 {

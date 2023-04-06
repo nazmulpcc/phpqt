@@ -1,7 +1,8 @@
 #include <phpcpp.h>
+#include "src/Widgets/application.h"
 #include "src/Widgets/widget.h"
 #include "src/Widgets/label.h"
-#include "src/Widgets/application.h"
+#include "src/Widgets/LineEdit.h"
 #include "src/Widgets/mainwindow.h"
 #include "src/Widgets/textedit.h"
 #include "src/Widgets/pushbutton.h"
@@ -18,6 +19,7 @@ extern "C" {
 
         auto application = Application::_DEFINITION();
         auto label = Label::_DEFINITION();
+        auto lineEdit = LineEdit::_DEFINITION();
         auto mainwindow = MainWindow::_DEFINITION();
         auto pushbutton = PushButton::_DEFINITION();
         auto textedit = TextEdit::_DEFINITION();
@@ -26,11 +28,13 @@ extern "C" {
         mainwindow.extends(widget);
         pushbutton.extends(widget);
         textedit.extends(widget);
+        lineEdit.extends(widget);
 
         extension
             .add(widget)
             .add(application)
             .add(label)
+            .add(lineEdit)
             .add(mainwindow)
             .add(pushbutton)
             .add(textedit);
