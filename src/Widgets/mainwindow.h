@@ -11,7 +11,6 @@ public:
     void __construct();
     // void addToolBar(Php::Parameters &params);
     void setCentralWidget(Php::Parameters &params);
-    void setWindowTitle(Php::Parameters &params);
 
     static Php::Class<MainWindow> _DEFINITION()
     {
@@ -21,11 +20,7 @@ public:
         mainwindow.method<&MainWindow::setCentralWidget>("setCentralWidget", {
             Php::ByVal("widget", "Qt\\Widgets\\Widget")
         });
-
-        mainwindow.method<&MainWindow::setWindowTitle>("setWindowTitle", {
-            Php::ByVal("title", Php::Type::String, true)
-        });
-
+        
         return mainwindow;
     }
 };

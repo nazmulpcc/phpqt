@@ -21,7 +21,3 @@ void MainWindow::setCentralWidget(Php::Parameters &params)
 
     this->mainWindow->setCentralWidget(widget->getNative());
 }
-
-void MainWindow::setWindowTitle(Php::Parameters &params) {
-    this->mainWindow->setWindowTitle(QString::fromStdString(params[0].stringValue()));
-}

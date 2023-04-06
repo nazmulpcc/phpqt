@@ -10,23 +10,51 @@ public:
     QWidget *native;
 
     QWidget *getNative();
-    virtual void setGeometry(Php::Parameters &params);
     void setNative(QWidget * n);
-    virtual void show();
+
+    Php::Value close();
+    void setDisabled(Php::Parameters &params);
+    void setFocus();
+    void setGeometry(Php::Parameters &params);
+    void setHidden(Php::Parameters &params);
+    void setStyleSheet(Php::Parameters &params);
+    void setWindowTitle(Php::Parameters &params);
+    void show();
+    void showFullScreen();
+    void showMaximized();
+    void showMinimized();
+    void showNormal();
+
 
     static Php::Class<Widget> _DEFINITION()
     {
-        Php::Class<Widget> widget("Qt\\Widgets\\Widget");
+        Php::Class<Widget> definition("Qt\\Widgets\\Widget");
 
-        widget.method<&Widget::setGeometry>("setGeometry", {
+        definition.method<&Widget::close>("close");
+        definition.method<&Widget::setDisabled>("setDisabled", {
+            Php::ByVal("disabled", Php::Type::Bool, true)
+        });
+        definition.method<&Widget::setFocus>("setFocus");
+        definition.method<&Widget::setGeometry>("setGeometry", {
                 Php::ByVal("x", Php::Type::Numeric, true),
                 Php::ByVal("y", Php::Type::Numeric, true),
                 Php::ByVal("w", Php::Type::Numeric, true),
                 Php::ByVal("h", Php::Type::Numeric, true),
         });
-        widget.method<&Widget::show>("show");
+        definition.method<&Widget::setHidden>("setHidden", {
+            Php::ByVal("hidden", Php::Type::Bool, true)
+        });
+        definition.method<&Widget::setStyleSheet>("setStyleSheet", {
+            Php::ByVal("style", Php::Type::String, true),
+        });
+        definition.method<&Widget::setWindowTitle>("setWindowTitle", {Php::ByVal("title", Php::Type::String, true)});
+        definition.method<&Widget::show>("show");
+        definition.method<&Widget::showFullScreen>("showFullScreen");
+        definition.method<&Widget::showMaximized>("showMaximized");
+        definition.method<&Widget::showMinimized>("showMinimized");
+        definition.method<&Widget::showNormal>("showNormal");
 
-        return widget;
+        return definition;
     }
 };
 
