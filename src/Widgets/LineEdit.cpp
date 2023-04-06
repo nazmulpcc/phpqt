@@ -45,6 +45,12 @@ Php::Value LineEdit::placeholderText() {
     return Php::Value(this->concrete->placeholderText().toStdString());
 }
 
+void LineEdit::setEchoMode(Php::Parameters &params)
+{
+    auto mode = static_cast<QLineEdit::EchoMode>(params[0].numericValue());
+    this->concrete->setEchoMode(mode);
+}
+
 void LineEdit::setInputMask(Php::Parameters &params)
 {
     this->concrete->setInputMask(QString::fromStdString(params[0].stringValue()));

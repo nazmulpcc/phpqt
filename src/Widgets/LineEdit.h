@@ -18,6 +18,7 @@ public:
     Php::Value isReadOnly();
     Php::Value placeholderText();
 
+    void setEchoMode(Php::Parameters &params);
     void setInputMask(Php::Parameters &params);
     void setMaxLength(Php::Parameters &params);
     void setPlaceholderText(Php::Parameters &params);
@@ -29,6 +30,12 @@ public:
 
     static Php::Class<LineEdit> _DEFINITION() {
         Php::Class<LineEdit> lineEdit("Qt\\Widgets\\LineEdit");
+
+        lineEdit.constant("Normal", QLineEdit::Normal);
+        lineEdit.constant("NoEcho", QLineEdit::NoEcho);
+        lineEdit.constant("Password", QLineEdit::Password);
+        lineEdit.constant("PasswordEchoOnEdit", QLineEdit::PasswordEchoOnEdit);
+
         lineEdit.method<&LineEdit::__construct>("__construct", {
             Php::ByVal("contents", Php::Type::String, false),
             Php::ByRef("parent", Php::Type::Object, false)
@@ -39,6 +46,7 @@ public:
         lineEdit.method<&LineEdit::isReadOnly>("isReadOnly");
         lineEdit.method<&LineEdit::placeholderText>("placeholderText");
 
+        lineEdit.method<&LineEdit::setEchoMode>("setEchoMode", {Php::ByVal("mask", Php::Type::String, true)});
         lineEdit.method<&LineEdit::setInputMask>("setInputMask", { Php::ByVal("mask", Php::Type::String, true) });
         lineEdit.method<&LineEdit::setMaxLength>("setMaxLength", { Php::ByVal("length", Php::Type::Numeric, true) });
         lineEdit.method<&LineEdit::setPlaceholderText>("setPlaceholderText", { Php::ByVal("contents", Php::Type::String, true) });
