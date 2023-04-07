@@ -1,10 +1,11 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include "../Core/Object.h"
 #include <phpcpp.h>
 #include <QtWidgets/QWidget>
 
-class Widget : public Php::Base
+class Widget : public Object
 {
 private:
     QWidget *native;
@@ -12,8 +13,8 @@ private:
 public:
     Widget();
     
-    QWidget *getNative();
-    void setNative(QWidget * n);
+    virtual QWidget *getNative();
+    virtual void setNative(QWidget * n);
 
     Php::Value close();
     void setDisabled(Php::Parameters &params);

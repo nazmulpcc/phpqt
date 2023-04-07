@@ -1,4 +1,5 @@
 #include <phpcpp.h>
+#include "src/Core/Object.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/FormLayout.h"
 #include "src/Widgets/widget.h"
@@ -17,6 +18,7 @@ extern "C" {
     {
         static Php::Extension extension("phpqt", "1.0");
 
+        auto object = Object::_DEFINITION();
         auto widget = Widget::_DEFINITION();
         auto layout = Layout::_DEFINITION();
 
@@ -28,6 +30,9 @@ extern "C" {
         auto pushbutton = PushButton::_DEFINITION();
         auto textedit = TextEdit::_DEFINITION();
 
+        widget.extends(object);
+        layout.extends(object);
+
         formLayout.extends(layout);
         label.extends(widget);
         mainwindow.extends(widget);
@@ -36,6 +41,7 @@ extern "C" {
         lineEdit.extends(widget);
 
         extension
+            .add(object)
             .add(widget)
             .add(layout)
             .add(application)

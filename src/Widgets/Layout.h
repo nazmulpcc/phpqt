@@ -1,10 +1,11 @@
 #ifndef LAYOUT_H
 #define LAYOUT_H
 
+#include "../Core/Object.h"
 #include <phpcpp.h>
 #include <QtWidgets/QLayout>
 
-class Layout : public Php::Base
+class Layout : public Object
 {
 private:
     QLayout *native;

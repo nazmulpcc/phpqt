@@ -64,6 +64,7 @@ void Widget::setGeometry(Php::Parameters &params)
 void Widget::setNative(QWidget* n)
 {
     this->native = n;
+    Object::setNative(n);
 }
 
 void Widget::show()

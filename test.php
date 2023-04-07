@@ -5,8 +5,10 @@ $app = new \Qt\Widgets\Application();
 $window = new \Qt\Widgets\MainWindow;
 $window->setWindowTitle("Hello World");
 $window->setGeometry(0, 100, 1000, 500);
+$window->setObjectName("MainWindow");
 
 $layout = new \Qt\Widgets\FormLayout($window);
+$layout->setObjectName("FormLayout");
 
 $email = new \Qt\Widgets\LineEdit();
 $password = new \Qt\Widgets\LineEdit();
@@ -18,7 +20,7 @@ $signIn->onClicked(function () use($email, $password, $window) {
     $mail = $email->text();
     $password = $password->text();
     echo "Loggin In with {$mail} and {$password}\n";
-    sleep(5);
+    sleep(1);
     $window->close();
 });
 
