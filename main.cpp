@@ -1,5 +1,6 @@
 #include <phpcpp.h>
 #include "src/Core/Event.h"
+#include "src/Core/TimerEvent.h"
 #include "src/Core/Object.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/FormLayout.h"
@@ -24,6 +25,7 @@ extern "C" {
         auto widget = Widget::_DEFINITION();
         auto layout = Layout::_DEFINITION();
 
+        auto timerevent = TimerEvent::_DEFINITION();
         auto application = Application::_DEFINITION();
         auto formLayout = FormLayout::_DEFINITION();
         auto label = Label::_DEFINITION();
@@ -34,6 +36,7 @@ extern "C" {
 
         widget.extends(object);
         layout.extends(object);
+        timerevent.extends(event);
 
         formLayout.extends(layout);
         label.extends(widget);
@@ -45,6 +48,7 @@ extern "C" {
         extension
             .add(object)
             .add(event)
+            .add(timerevent)
             .add(widget)
             .add(layout)
             .add(application)
