@@ -1,4 +1,5 @@
 #include <phpcpp.h>
+#include "src/Core/Event.h"
 #include "src/Core/Object.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/FormLayout.h"
@@ -18,6 +19,7 @@ extern "C" {
     {
         static Php::Extension extension("phpqt", "1.0");
 
+        auto event = Event::_DEFINITION();
         auto object = Object::_DEFINITION();
         auto widget = Widget::_DEFINITION();
         auto layout = Layout::_DEFINITION();
@@ -42,6 +44,7 @@ extern "C" {
 
         extension
             .add(object)
+            .add(event)
             .add(widget)
             .add(layout)
             .add(application)
