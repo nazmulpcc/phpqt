@@ -13,6 +13,9 @@ private:
 public:
     inline static const std::string CLASSPATH = "Qt\\Core\\TimerEvent";
 
+    virtual void setNative(QTimerEvent *n);
+    virtual QTimerEvent *getNative();
+    
     void __construct(Php::Parameters &params);
     Php::Value timerId();
 

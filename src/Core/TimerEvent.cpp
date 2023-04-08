@@ -1,5 +1,16 @@
 #include "TimerEvent.h"
 
+void TimerEvent::setNative(QTimerEvent *n)
+{
+    this->native = n;
+    Event::setNative(this->native);
+}
+
+QTimerEvent *TimerEvent::getNative()
+{
+    return this->native;
+}
+
 void TimerEvent::__construct(Php::Parameters &params)
 {
     this->native = new QTimerEvent(params[0].numericValue());

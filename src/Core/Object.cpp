@@ -1,5 +1,6 @@
 #include "Object.h"
 #include <iostream>
+#include "TimerObject.h"
 
 Object::Object(){}
 
@@ -50,7 +51,10 @@ Php::Value Object::isWindowType()
 
 void Object::killTimer(Php::Parameters &params)
 {
-    this->native->killTimer(params[0].numericValue());
+    int fd = params[0].numericValue();
+    this->timers[fd]->killTimer(fd);
+    delete this->timers[fd]; // does this actually free memory? Or is there a possibility of memory leak?
+    this->timers.erase(fd);
 }
 
 Php::Value Object::parent()
@@ -76,6 +80,12 @@ void Object::setParent(Php::Parameters &params)
 
 Php::Value Object::startTimer(Php::Parameters &params)
 {
-    int fd = this->native->startTimer(params[0].numericValue());
+    auto callback = params[2];
+    auto type = static_cast<Qt::TimerType>(params[1].numericValue());
+    TimerObject *timerObject = new TimerObject(this->native);
+    int fd = timerObject->start(params[0].numericValue(), type, callback);
+
+    this->timers[fd] = timerObject;
+
     return Php::Value(fd);
 }

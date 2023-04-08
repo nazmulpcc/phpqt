@@ -2,12 +2,14 @@
 #define OBJECT_H
 
 #include "phpcpp.h"
+#include "TimerObject.h"
 #include <QtCore/QObject>
 
 class Object: public Php::Base
 {
 private:
     QObject *native;
+    std::map<int, TimerObject*>timers;
 
 public:
     Object();
@@ -15,8 +17,8 @@ public:
 
     inline static const std::string CLASSPATH = "Qt\\Core\\Obj";
 
-    virtual void setNative(QObject *n);
-    virtual QObject *getNative();
+    void setNative(QObject *n);
+    QObject *getNative();
 
     void blockSignals(Php::Parameters &params);
     void dumpObjectInfo();
@@ -55,7 +57,8 @@ public:
         });
         definition.method<&Object::startTimer>("startTimer", {
             Php::ByVal("interval", Php::Type::Numeric, true),
-            Php::ByVal("timerType", Php::Type::Numeric, true)
+            Php::ByVal("timerType", Php::Type::Numeric, true),
+            Php::ByVal("callback", Php::Type::Callable, true)
         });
 
         return definition;
