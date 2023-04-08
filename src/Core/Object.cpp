@@ -73,3 +73,9 @@ void Object::setParent(Php::Parameters &params)
     auto parent = params[0].implementation<Object>();
     this->native->setParent(parent->getNative());
 }
+
+Php::Value Object::startTimer(Php::Parameters &params)
+{
+    int fd = this->native->startTimer(params[0].numericValue());
+    return Php::Value(fd);
+}

@@ -2,6 +2,7 @@
 
 $app = new \Qt\Widgets\Application();
 
+
 $window = new \Qt\Widgets\MainWindow;
 $window->setWindowTitle("Hello World");
 $window->setGeometry(0, 100, 1000, 500);
@@ -13,6 +14,8 @@ $layout->setObjectName("FormLayout");
 $email = new \Qt\Widgets\LineEdit();
 $password = new \Qt\Widgets\LineEdit();
 $signIn = new \Qt\Widgets\PushButton("Log In");
+
+var_dump($email === $email);
 
 $password->setEchoMode(\Qt\Widgets\LineEdit::Password);
 

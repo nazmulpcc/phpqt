@@ -27,9 +27,9 @@ public:
     void killTimer(Php::Parameters &params);
     Php::Value parent();
     Php::Value objectName();
-
     void setObjectName(Php::Parameters &params);
     void setParent(Php::Parameters &params);
+    Php::Value startTimer(Php::Parameters &params);
 
     static Php::Class<Object> _DEFINITION()
     {
@@ -52,6 +52,10 @@ public:
         });
         definition.method<&Object::setParent>("setParent", {
             Php::ByRef("parent", Php::Type::Object, true)
+        });
+        definition.method<&Object::startTimer>("startTimer", {
+            Php::ByVal("interval", Php::Type::Numeric, true),
+            Php::ByVal("timerType", Php::Type::Numeric, true)
         });
 
         return definition;
