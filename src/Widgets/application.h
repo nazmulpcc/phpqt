@@ -7,13 +7,14 @@ private:
     QApplication *native;
 
 public:
-    void __construct();
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\Application";
 
+    void __construct();
     Php::Value exec();
 
     static Php::Class<Application> _DEFINITION()
     {
-        Php::Class<Application> application("Qt\\Widgets\\Application");
+        Php::Class<Application> application(Application::CLASSPATH.c_str());
         application.method<&Application::__construct>("__construct");
         application.method<&Application::exec>("exec");
 

@@ -8,12 +8,14 @@ private:
     QLabel* native;
 
 public:
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\Label";
+
     void __construct(Php::Parameters &params);
     void setText(Php::Parameters &params);
 
     static Php::Class<Label> _DEFINITION()
     {
-        Php::Class<Label> label("Qt\\Widgets\\Label");
+        Php::Class<Label> label(Label::CLASSPATH.c_str());
         label.method<&Label::__construct>("__construct", {
             Php::ByVal("text", Php::Type::String, false)
         });

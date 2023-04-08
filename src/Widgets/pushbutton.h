@@ -8,6 +8,8 @@ private:
     QPushButton *native;
 
 public:
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\PushButton";
+
     void __construct(Php::Parameters &params);
     void onClicked(Php::Parameters &params);
     void onPressed(Php::Parameters &params);
@@ -15,7 +17,7 @@ public:
 
     static Php::Class<PushButton> _DEFINITION()
     {
-        Php::Class<PushButton> pushbutton("Qt\\Widgets\\PushButton");
+        Php::Class<PushButton> pushbutton(PushButton::CLASSPATH.c_str());
         pushbutton.method<&PushButton::__construct>("__construct", {
             Php::ByVal("name", Php::Type::String, true),
             Php::ByRef("parent", Php::Type::Object, false)

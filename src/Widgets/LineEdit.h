@@ -11,6 +11,8 @@ private:
     QLineEdit *native;
 
 public:
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\LineEdit";
+
     void __construct(Php::Parameters &params);
 
     Php::Value inputMask();
@@ -29,7 +31,7 @@ public:
     Php::Value text();
 
     static Php::Class<LineEdit> _DEFINITION() {
-        Php::Class<LineEdit> lineEdit("Qt\\Widgets\\LineEdit");
+        Php::Class<LineEdit> lineEdit(LineEdit::CLASSPATH.c_str());
 
         lineEdit.constant("Normal", QLineEdit::Normal);
         lineEdit.constant("NoEcho", QLineEdit::NoEcho);

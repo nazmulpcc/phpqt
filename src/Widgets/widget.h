@@ -12,6 +12,8 @@ private:
 
 public:
     Widget();
+
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\Widget";
     
     virtual QWidget *getNative();
     virtual void setNative(QWidget * n);
@@ -33,7 +35,7 @@ public:
 
     static Php::Class<Widget> _DEFINITION()
     {
-        Php::Class<Widget> definition("Qt\\Widgets\\Widget");
+        Php::Class<Widget> definition(Widget::CLASSPATH.c_str());
 
         definition.method<&Widget::close>("close");
         definition.method<&Widget::setDisabled>("setDisabled", {

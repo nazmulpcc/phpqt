@@ -13,17 +13,45 @@ public:
     Object();
     Object(QObject *n);
 
+    inline static const std::string CLASSPATH = "Qt\\Core\\Obj";
+
     virtual void setNative(QObject *n);
     virtual QObject *getNative();
 
+    void blockSignals(Php::Parameters &params);
+    void dumpObjectInfo();
+    void dumpObjectTree();
+    Php::Value dynamicPropertyNames();
+    Php::Value isWidgetType();
+    Php::Value isWindowType();
+    void killTimer(Php::Parameters &params);
+    Php::Value parent();
+    Php::Value objectName();
+
     void setObjectName(Php::Parameters &params);
+    void setParent(Php::Parameters &params);
 
     static Php::Class<Object> _DEFINITION()
     {
-        Php::Class<Object> definition("Qt\\Core\\Obj");
+        Php::Class<Object> definition(Object::CLASSPATH.c_str());
 
+        definition.method<&Object::blockSignals>("blockSignals", {
+            Php::ByVal("block", Php::Type::Bool, true)
+        });
+        definition.method<&Object::dumpObjectInfo>("dumpObjectInfo");
+        definition.method<&Object::dumpObjectTree>("dumpObjectTree");
+        definition.method<&Object::isWidgetType>("isWidgetType");
+        definition.method<&Object::isWindowType>("isWindowType");
+        definition.method<&Object::killTimer>("killTimer", {
+            Php::ByVal("fd", Php::Type::Numeric, true)
+        });
+        definition.method<&Object::objectName>("objectName");
+        definition.method<&Object::parent>("parent");
         definition.method<&Object::setObjectName>("setObjectName", {
             Php::ByVal("name", Php::Type::String, true)
+        });
+        definition.method<&Object::setParent>("setParent", {
+            Php::ByRef("parent", Php::Type::Object, true)
         });
 
         return definition;

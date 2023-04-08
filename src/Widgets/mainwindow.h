@@ -8,13 +8,15 @@ private:
     QMainWindow *native;
 
 public:
+    inline static const std::string CLASSPATH = "Qt\\Widgets\\MainWindow";
+
     void __construct();
     // void addToolBar(Php::Parameters &params);
     void setCentralWidget(Php::Parameters &params);
 
     static Php::Class<MainWindow> _DEFINITION()
     {
-        Php::Class<MainWindow> mainwindow ("Qt\\Widgets\\MainWindow");
+        Php::Class<MainWindow> mainwindow(MainWindow::CLASSPATH.c_str());
 
         mainwindow.method<&MainWindow::__construct>("__construct");
         mainwindow.method<&MainWindow::setCentralWidget>("setCentralWidget", {
