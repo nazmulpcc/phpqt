@@ -29,6 +29,7 @@ public:
     void killTimer(Php::Parameters &params);
     Php::Value parent();
     Php::Value objectName();
+    void onObjectNameChanged(Php::Parameters &params);
     void setObjectName(Php::Parameters &params);
     void setParent(Php::Parameters &params);
     Php::Value startTimer(Php::Parameters &params);
@@ -47,6 +48,10 @@ public:
         definition.method<&Object::killTimer>("killTimer", {
             Php::ByVal("fd", Php::Type::Numeric, true)
         });
+        definition.method<&Object::onObjectNameChanged>("onObjectNameChanged", {
+            Php::ByVal("callback", Php::Type::Callable, true),
+            Php::ByVal("type", Php::Type::Numeric, false)
+        });
         definition.method<&Object::objectName>("objectName");
         definition.method<&Object::parent>("parent");
         definition.method<&Object::setObjectName>("setObjectName", {
@@ -58,7 +63,7 @@ public:
         definition.method<&Object::startTimer>("startTimer", {
             Php::ByVal("interval", Php::Type::Numeric, true),
             Php::ByVal("timerType", Php::Type::Numeric, true),
-            Php::ByVal("callback", Php::Type::Callable, true)
+            Php::ByVal("callback", Php::Type::Callable, false)
         });
 
         return definition;

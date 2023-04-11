@@ -24,6 +24,15 @@ void Object::blockSignals(Php::Parameters &params)
     this->native->blockSignals(params[0].boolValue());
 }
 
+void Object::onObjectNameChanged(Php::Parameters &params)
+{
+    auto callback = params[0];
+
+    this->native->connect(this->native, &QObject::objectNameChanged, [callback](QString objectName){
+        callback(Php::Value(objectName.toStdString()));
+    });
+}
+
 void Object::dumpObjectInfo()
 {
     this->native->dumpObjectInfo();
@@ -80,8 +89,16 @@ void Object::setParent(Php::Parameters &params)
 
 Php::Value Object::startTimer(Php::Parameters &params)
 {
-    auto callback = params[2];
-    auto type = static_cast<Qt::TimerType>(params[1].numericValue());
+    Php::Value callback;
+    Qt::TimerType type;
+    if (params.size() == 2) {
+        callback = params[1];
+        type = Qt::CoarseTimer;
+    }else{
+        auto callback = params[2];
+        auto type = static_cast<Qt::TimerType>(params[1].numericValue());
+    }
+    
     TimerObject *timerObject = new TimerObject(this->native);
     int fd = timerObject->start(params[0].numericValue(), type, callback);
 
