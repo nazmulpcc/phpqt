@@ -87,6 +87,12 @@ void Object::setParent(Php::Parameters &params)
     this->native->setParent(parent->getNative());
 }
 
+void Object::moveToThread(Php::Parameters &params)
+{
+    auto thread = params[0].implementation<Thread>();
+    this->native->moveToThread(thread->getNative());
+}
+
 Php::Value Object::startTimer(Php::Parameters &params)
 {
     Php::Value callback;

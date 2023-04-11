@@ -27,6 +27,7 @@ public:
     Php::Value isWidgetType();
     Php::Value isWindowType();
     void killTimer(Php::Parameters &params);
+    void moveToThread(Php::Parameters &params);
     Php::Value parent();
     Php::Value objectName();
     void onObjectNameChanged(Php::Parameters &params);
@@ -47,6 +48,9 @@ public:
         definition.method<&Object::isWindowType>("isWindowType");
         definition.method<&Object::killTimer>("killTimer", {
             Php::ByVal("fd", Php::Type::Numeric, true)
+        });
+        definition.method<&Object::moveToThread>("moveToThread", {
+            Php::ByRef("targetThread", Php::Type::Object, true)
         });
         definition.method<&Object::onObjectNameChanged>("onObjectNameChanged", {
             Php::ByVal("callback", Php::Type::Callable, true),

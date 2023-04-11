@@ -5,6 +5,7 @@ if (!class_exists(\Qt\Core\Obj::class)) {
     class Obj {
         public function setObjectName(string $name) {}
         public function onObjectNameChanged(callable $callback) {}
+        public function startTimer(int $interval, callable|int $timerType, callable $callback = null) {}
     }
 }
 
@@ -77,6 +78,18 @@ $widget = new \Qt\Widgets\Widget();
 $widget->setLayout($layout);
 
 $window->setCentralWidget($widget);
+
+$thread = new \Qt\Core\Thread;
+$thread->onStarted(function () use(&$thread) {
+    echo "Thread has started\n";
+    sleep(5);
+    echo "Thread work done\n";
+    $thread->exit(0);
+});
+$thread->onFinished(function () {
+    echo "Thread finished\n";
+});
+$thread->start();
 
 $window->show();
 

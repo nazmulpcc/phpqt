@@ -2,6 +2,7 @@
 #include "src/Core/Event.h"
 #include "src/Core/TimerEvent.h"
 #include "src/Core/Object.h"
+#include "src/Core/Thread.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/FormLayout.h"
 #include "src/Widgets/widget.h"
@@ -25,6 +26,7 @@ extern "C" {
         auto widget = Widget::_DEFINITION();
         auto layout = Layout::_DEFINITION();
 
+        auto thread = Thread::_DEFINITION();
         auto timerevent = TimerEvent::_DEFINITION();
         auto application = Application::_DEFINITION();
         auto formLayout = FormLayout::_DEFINITION();
@@ -38,6 +40,7 @@ extern "C" {
         layout.extends(object);
         timerevent.extends(event);
 
+        thread.extends(object);
         formLayout.extends(layout);
         label.extends(widget);
         mainwindow.extends(widget);
@@ -49,6 +52,7 @@ extern "C" {
             .add(object)
             .add(event)
             .add(timerevent)
+            .add(thread)
             .add(widget)
             .add(layout)
             .add(application)
