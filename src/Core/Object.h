@@ -20,6 +20,7 @@ public:
     void setNative(QObject *n);
     QObject *getNative();
 
+    void __construct(Php::Parameters &params);
     void blockSignals(Php::Parameters &params);
     void dumpObjectInfo();
     void dumpObjectTree();
@@ -34,11 +35,15 @@ public:
     void setObjectName(Php::Parameters &params);
     void setParent(Php::Parameters &params);
     Php::Value startTimer(Php::Parameters &params);
+    Php::Value thread();
 
     static Php::Class<Object> _DEFINITION()
     {
         Php::Class<Object> definition(Object::CLASSPATH.c_str());
 
+        definition.method<&Object::__construct>("__construct", {
+            Php::ByRef("parent", Php::Type::Object, false)
+        });
         definition.method<&Object::blockSignals>("blockSignals", {
             Php::ByVal("block", Php::Type::Bool, true)
         });
@@ -69,6 +74,7 @@ public:
             Php::ByVal("timerType", Php::Type::Numeric, true),
             Php::ByVal("callback", Php::Type::Callable, false)
         });
+        definition.method<&Object::thread>("thread");
 
         return definition;
     }

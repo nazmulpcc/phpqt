@@ -1,6 +1,7 @@
 #include "Object.h"
 #include <iostream>
 #include "TimerObject.h"
+#include "Thread.h"
 
 Object::Object(){}
 
@@ -17,6 +18,15 @@ void Object::setNative(QObject *n)
 QObject *Object::getNative()
 {
     return this->native;
+}
+
+void Object::__construct(Php::Parameters &params)
+{
+    QObject *parent = nullptr;
+    if (params.size() > 0) {
+        parent = params[0].implementation<Object>()->getNative();
+    }
+    this->setNative(new QObject(parent));
 }
 
 void Object::blockSignals(Php::Parameters &params)
@@ -79,6 +89,14 @@ Php::Value Object::objectName()
 void Object::setObjectName(Php::Parameters &params)
 {
     this->native->setObjectName(QString::fromStdString(params[0].stringValue()));
+}
+
+Php::Value Object::thread()
+{
+    auto thread = this->native->thread();
+    auto phpThread = new Thread;
+    phpThread->setNative(thread);
+    return Php::Object(Thread::CLASSPATH.c_str(), phpThread);
 }
 
 void Object::setParent(Php::Parameters &params)
