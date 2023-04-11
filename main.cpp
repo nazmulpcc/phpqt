@@ -4,6 +4,7 @@
 #include "src/Core/Object.h"
 #include "src/Core/Thread.h"
 #include "src/Widgets/application.h"
+#include "src/Widgets/BoxLayout.h"
 #include "src/Widgets/FormLayout.h"
 #include "src/Widgets/widget.h"
 #include "src/Widgets/Layout.h"
@@ -29,6 +30,7 @@ extern "C" {
         auto thread = Thread::_DEFINITION();
         auto timerevent = TimerEvent::_DEFINITION();
         auto application = Application::_DEFINITION();
+        auto boxLayout = BoxLayout::_DEFINITION();
         auto formLayout = FormLayout::_DEFINITION();
         auto label = Label::_DEFINITION();
         auto lineEdit = LineEdit::_DEFINITION();
@@ -42,6 +44,7 @@ extern "C" {
 
         thread.extends(object);
         formLayout.extends(layout);
+        boxLayout.extends(layout);
         label.extends(widget);
         mainwindow.extends(widget);
         pushbutton.extends(widget);
@@ -57,6 +60,7 @@ extern "C" {
             .add(layout)
             .add(application)
             .add(formLayout)
+            .add(boxLayout)
             .add(label)
             .add(lineEdit)
             .add(mainwindow)

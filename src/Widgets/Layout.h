@@ -44,7 +44,7 @@ public:
         Php::Class<Layout> definition(Layout::CLASSPATH.c_str(), Php::Abstract);
 
         definition.method<&Layout::activate>("activate");
-        definition.method<&Layout::addWidget>("addWidget", {Php::ByRef("parent", Php::Type::Object, false)});
+        // definition.method<&Layout::addWidget>("addWidget", {Php::ByRef("parent", Php::Type::Object, false)});
         definition.method<&Layout::getContentsMargins>("getContentsMargins", {
             Php::ByRef("left", Php::Type::Numeric, false),
             Php::ByRef("top", Php::Type::Numeric, false),
