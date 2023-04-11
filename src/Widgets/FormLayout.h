@@ -9,6 +9,9 @@ private:
 public:
     inline static const std::string CLASSPATH = "Qt\\Widgets\\FormLayout";
 
+    void setNative(QFormLayout *n);
+    QFormLayout *getNative();
+
     void __construct(Php::Parameters &params);
     void addRow(Php::Parameters &params);
 

@@ -1,15 +1,25 @@
 #include "widget.h"
 #include "FormLayout.h"
 
+void FormLayout::setNative(QFormLayout *n)
+{
+    this->native = n;
+    Layout::setNative(n);
+}
+
+QFormLayout *FormLayout::getNative()
+{
+    return this->native;
+}
+
 void FormLayout::__construct(Php::Parameters &params)
 {
     QWidget *parent = nullptr;
     if (params.size() > 0) {
         params[0].implementation<QWidget>();
     }
-    
-    this->native = new QFormLayout(parent);
-    setNative(this->native);
+
+    this->setNative(new QFormLayout(parent));
 }
 
 void FormLayout::addRow(Php::Parameters &params)
