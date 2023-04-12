@@ -53,7 +53,7 @@ LINKER = g++
 #
 
 QT_FLAGS            = $(shell pkg-config --cflags --libs Qt5Widgets)
-COMPILER_FLAGS      =   -Wall -c -O2 -std=c++11 -fpic -v
+COMPILER_FLAGS      =   -Wall -c -O2 -std=c++17 -fpic -v
 LINKER_FLAGS        =   -shared -v
 LINKER_DEPENDENCIES =   -lphpcpp
 
