@@ -2,19 +2,30 @@
 #include "Layout.h"
 #include <QtWidgets/QWidget>
 
-Widget::Widget()
-{
-    native = new QWidget;
-}
-
 QWidget *Widget::getNative()
 {
     return this->native;
 }
 
+void Widget::__construct(Php::Parameters &params)
+{
+    QWidget *parent = nullptr;
+    if (params.size() > 0) {
+        parent = params[0].implementation<Widget>()->getNative();
+    }
+    this->setNative(new QWidget(parent));
+}
+
 Php::Value Widget::close()
 {
     return Php::Value(this->native->close());
+}
+
+void Widget::setCursor(Php::Parameters &params)
+{
+    auto shape = static_cast<Qt::CursorShape>(params[0].numericValue());
+    auto *cursor = new QCursor(shape);
+    this->native->setCursor(*cursor);
 }
 
 void Widget::setDisabled(Php::Parameters &params)
@@ -35,6 +46,42 @@ void Widget::setHidden(Php::Parameters &params)
 void Widget::setLayout(Php::Parameters &params)
 {
     this->native->setLayout(params[0].implementation<Layout>()->getNative());
+}
+
+void Widget::setMaximumHeight(Php::Parameters &params)
+{
+    this->native->setMaximumHeight(params[0].numericValue());
+}
+
+void Widget::setMaximumSize(Php::Parameters &params)
+{
+    this->native->setMaximumSize(
+        params[0].numericValue(),
+        params[1].numericValue()
+    );
+}
+
+void Widget::setMaximumWidth(Php::Parameters &params)
+{
+    this->native->setMaximumWidth(params[0].numericValue());
+}
+
+void Widget::setMinimumSize(Php::Parameters &params)
+{
+    this->native->setMinimumSize(
+        params[0].numericValue(),
+        params[1].numericValue()
+    );
+}
+
+void Widget::setMinimumHeight(Php::Parameters &params)
+{
+    this->native->setMinimumHeight(params[0].numericValue());
+}
+
+void Widget::setMinimumWidth(Php::Parameters &params)
+{
+    this->native->setMinimumWidth(params[0].numericValue());
 }
 
 void Widget::setStyleSheet(Php::Parameters &params)

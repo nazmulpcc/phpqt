@@ -19,7 +19,9 @@ public:
     {
         Php::Class<FormLayout> definition(FormLayout::CLASSPATH.c_str());
 
-        definition.method<&FormLayout::__construct>("__construct");
+        definition.method<&FormLayout::__construct>("__construct", {
+            Php::ByRef("parent", Php::Type::Object, false)
+        });
         definition.method<&FormLayout::addRow>("addRow", {
             Php::ByVal("label", Php::Type::Object, true),
             Php::ByVal("parent", Php::Type::Object, false)

@@ -11,6 +11,12 @@ void Label::__construct(Php::Parameters &params)
     }
 }
 
+void Label::setAlignment(Php::Parameters &params)
+{
+    auto alignment = static_cast<Qt::Alignment>((int)params[0].numericValue());
+    return this->native->setAlignment(alignment);
+}
+
 void Label::setText(Php::Parameters &params)
 {
     QString label = QString::fromStdString(params[0].stringValue());
