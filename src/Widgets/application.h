@@ -9,16 +9,13 @@ private:
 public:
     inline static const std::string CLASSPATH = "Qt\\Widgets\\Application";
 
-    void __construct(Php::Parameters &params);
+    void __construct();
     Php::Value exec();
 
     static Php::Class<Application> _DEFINITION()
     {
         Php::Class<Application> application(Application::CLASSPATH.c_str());
-        application.method<&Application::__construct>("__construct", {
-            Php::ByVal("argc", Php::Type::Numeric, false),
-            Php::ByVal("argv", Php::Type::Array, false)
-        });
+        application.method<&Application::__construct>("__construct");
         application.method<&Application::exec>("exec");
 
         return application;
