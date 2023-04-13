@@ -14,6 +14,7 @@
 #include "src/Widgets/mainwindow.h"
 #include "src/Widgets/textedit.h"
 #include "src/Widgets/pushbutton.h"
+#include "src/Gui/Pixmap.h"
 
 class PhpQApplication
 {};
@@ -39,6 +40,8 @@ extern "C" {
         auto mainwindow = MainWindow::_DEFINITION();
         auto pushbutton = PushButton::_DEFINITION();
         auto textedit = TextEdit::_DEFINITION();
+
+        auto pixmap = Pixmap::_DEFINITION();
 
         widget.extends(object);
         layout.extends(object);
@@ -69,7 +72,8 @@ extern "C" {
             .add(lineEdit)
             .add(mainwindow)
             .add(pushbutton)
-            .add(textedit);
+            .add(textedit)
+            .add(pixmap);
 
         return extension;
     }

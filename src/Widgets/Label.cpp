@@ -1,5 +1,7 @@
 #include <phpcpp.h>
 #include "label.h"
+#include "../Gui/Pixmap.h"
+#include <QtGui/QPixmap>
 
 void Label::__construct(Php::Parameters &params)
 {
@@ -11,10 +13,23 @@ void Label::__construct(Php::Parameters &params)
     }
 }
 
+Php::Value Label::pixmap()
+{
+    auto pixmap = new Pixmap;
+    pixmap->setNative(this->native->pixmap());
+    return Php::Object(Pixmap::CLASSPATH, pixmap);
+}
+
 void Label::setAlignment(Php::Parameters &params)
 {
     auto alignment = static_cast<Qt::Alignment>((int)params[0].numericValue());
     return this->native->setAlignment(alignment);
+}
+
+void Label::setPixmap(Php::Parameters &params)
+{
+    auto *pixmap = params[0].implementation<Pixmap>();
+    this->native->setPixmap(*pixmap->getNative());
 }
 
 void Label::setText(Php::Parameters &params)
