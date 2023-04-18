@@ -3,6 +3,7 @@
 #include "src/Core/TimerEvent.h"
 #include "src/Core/Object.h"
 #include "src/Core/Thread.h"
+#include "src/Widgets/Action.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/BoxLayout.h"
 #include "src/Widgets/VBoxLayout.h"
@@ -15,6 +16,7 @@
 #include "src/Widgets/textedit.h"
 #include "src/Widgets/pushbutton.h"
 #include "src/Gui/Pixmap.h"
+#include "src/Gui/Icon.h"
 
 class PhpQApplication
 {};
@@ -31,6 +33,7 @@ extern "C" {
 
         auto thread = Thread::_DEFINITION();
         auto timerevent = TimerEvent::_DEFINITION();
+        auto action = Action::_DEFINITION();
         auto application = Application::_DEFINITION();
         auto boxLayout = BoxLayout::_DEFINITION();
         auto vboxLayout = VBoxLayout::_DEFINITION();
@@ -42,11 +45,13 @@ extern "C" {
         auto textedit = TextEdit::_DEFINITION();
 
         auto pixmap = Pixmap::_DEFINITION();
+        auto icon = Icon::_DEFINITION();
 
         widget.extends(object);
         layout.extends(object);
         timerevent.extends(event);
 
+        action.extends(object);
         thread.extends(object);
         formLayout.extends(layout);
         boxLayout.extends(layout);
@@ -63,6 +68,7 @@ extern "C" {
             .add(timerevent)
             .add(thread)
             .add(widget)
+            .add(action)
             .add(layout)
             .add(application)
             .add(formLayout)
@@ -73,7 +79,8 @@ extern "C" {
             .add(mainwindow)
             .add(pushbutton)
             .add(textedit)
-            .add(pixmap);
+            .add(pixmap)
+            .add(icon);
 
         return extension;
     }
