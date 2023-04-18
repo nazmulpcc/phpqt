@@ -23,6 +23,8 @@ public:
         definition.method<&Icon::__construct>("__construct", {
             Php::ByRef("file", Php::Type::Object, true)
         });
+
+        return definition;
     }
 };
 

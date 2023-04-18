@@ -26,6 +26,8 @@ public:
             Php::ByRef("text", Php::Type::Object, false),
             Php::ByRef("parent", Php::Type::Object, false)
         });
+
+        return definition;
     }
 };
 
