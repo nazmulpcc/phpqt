@@ -2,6 +2,7 @@
 #include "src/Core/Event.h"
 #include "src/Core/TimerEvent.h"
 #include "src/Core/Object.h"
+#include "src/Core/Size.h"
 #include "src/Core/Thread.h"
 #include "src/Widgets/Action.h"
 #include "src/Widgets/application.h"
@@ -31,6 +32,7 @@ extern "C" {
         auto widget = Widget::_DEFINITION();
         auto layout = Layout::_DEFINITION();
 
+        auto size = Size::_DEFINITION();
         auto thread = Thread::_DEFINITION();
         auto timerevent = TimerEvent::_DEFINITION();
         auto action = Action::_DEFINITION();
@@ -66,6 +68,7 @@ extern "C" {
             .add(object)
             .add(event)
             .add(timerevent)
+            .add(size)
             .add(thread)
             .add(widget)
             .add(action)

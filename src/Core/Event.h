@@ -12,7 +12,7 @@ public:
     inline static const std::string CLASSPATH = "Qt\\Core\\Event";
 
     void setNative(QEvent *n);
-    QEvent *getNative(QEvent *n);
+    QEvent *getNative();
 
     void __construct(Php::Parameters &params);
     void accept();

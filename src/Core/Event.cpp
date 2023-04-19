@@ -6,7 +6,7 @@ void Event::setNative(QEvent *n)
     this->native = n;
 }
 
-QEvent *Event::getNative(QEvent *n)
+QEvent *Event::getNative()
 {
     return this->native;
 }
