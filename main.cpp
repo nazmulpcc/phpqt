@@ -1,4 +1,5 @@
 #include <phpcpp.h>
+#include "src/QtConstants.h"
 #include "src/Core/Event.h"
 #include "src/Core/TimerEvent.h"
 #include "src/Core/Object.h"
@@ -26,6 +27,8 @@ extern "C" {
     PHPCPP_EXPORT void *get_module()
     {
         static Php::Extension extension("phpqt", "1.0");
+
+        auto qt = QtConstants::_DEFINITION();
 
         auto event = Event::_DEFINITION();
         auto object = Object::_DEFINITION();
@@ -65,6 +68,7 @@ extern "C" {
         lineEdit.extends(widget);
 
         extension
+            .add(qt)
             .add(object)
             .add(event)
             .add(timerevent)
