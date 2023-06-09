@@ -26,7 +26,7 @@ void Pixmap::__construct(Php::Parameters &params)
 
 Php::Value Pixmap::cacheKey()
 {
-    return Php::Value(this->native->cacheKey());
+    return Php::Value((int) this->native->cacheKey());
 }
 
 Php::Value Pixmap::convertFromImage(Php::Parameters &params)
