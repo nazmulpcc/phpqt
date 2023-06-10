@@ -26,6 +26,11 @@ void LineEdit::__construct(Php::Parameters &params)
     setNative(this->native);
 }
 
+void LineEdit::clear()
+{
+    this->native->clear();
+}
+
 Php::Value LineEdit::inputMask()
 {
     return Php::Value(this->native->inputMask().toStdString());
@@ -75,9 +80,25 @@ void LineEdit::setSelection(Php::Parameters &params)
     this->native->setSelection(params[0].numericValue(), params[1].numericValue());
 }
 
+void LineEdit::setText(Php::Parameters &params)
+{
+    auto text = QString::fromStdString(params[0].stringValue());
+    this->native->setText(text);
+}
+
 void LineEdit::setValidator(Php::Parameters &params)
 {
     // TODO: implement QValidator class first
+}
+
+void LineEdit::textChanged(Php::Parameters &params)
+{
+    this->native->connect(this->native, &QLineEdit::textChanged, params[0]);
+}
+
+void LineEdit::textEdited(Php::Parameters &params)
+{
+    this->native->connect(this->native, &QLineEdit::textEdited, params[0]);
 }
 
 Php::Value LineEdit::text()
