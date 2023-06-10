@@ -8,11 +8,6 @@ TimerObject::TimerObject(QObject *parent): QObject(parent)
 {
 }
 
-TimerObject::~TimerObject()
-{
-    Php::out << "Destroying a timeobject\n";
-}
-
 int TimerObject::start(int time, Qt::TimerType type, Php::Value c)
 {
     this->callback = c;

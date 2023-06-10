@@ -9,7 +9,6 @@ class TimerObject: public QObject
 {
 public:
     TimerObject(QObject *parent = nullptr);
-    ~TimerObject();
 
     int start(int time, Qt::TimerType type, Php::Value c);
 

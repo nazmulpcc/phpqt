@@ -93,12 +93,18 @@ void LineEdit::setValidator(Php::Parameters &params)
 
 void LineEdit::textChanged(Php::Parameters &params)
 {
-    this->native->connect(this->native, &QLineEdit::textChanged, params[0]);
+    Php::Value callback = params[0];
+    this->native->connect(this->native, &QLineEdit::textChanged, [=](QString updatedtValue){
+        callback(Php::Value(updatedtValue.toStdString()));
+    });
 }
 
 void LineEdit::textEdited(Php::Parameters &params)
 {
-    this->native->connect(this->native, &QLineEdit::textEdited, params[0]);
+    Php::Value callback = params[0];
+    this->native->connect(this->native, &QLineEdit::textEdited, [=](QString updatedtValue){
+        callback(Php::Value(updatedtValue.toStdString()));
+    });
 }
 
 Php::Value LineEdit::text()
