@@ -43,7 +43,7 @@ public:
 
         definition.method<&BoxLayout::__construct>("__construct", {
             Php::ByVal("direction", Php::Type::Numeric, true),
-            Php::ByVal("parent", Php::Type::Object, true)
+            Php::ByVal("parent", Php::Type::Object, false)
         });
         definition.method<&BoxLayout::addLayout>("addLayout", {
             Php::ByRef("layout", Php::Type::Object, true),

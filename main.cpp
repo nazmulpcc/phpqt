@@ -15,6 +15,7 @@
 #include "src/Widgets/label.h"
 #include "src/Widgets/LineEdit.h"
 #include "src/Widgets/mainwindow.h"
+#include "src/Widgets/ProgressBar.h"
 #include "src/Widgets/textedit.h"
 #include "src/Widgets/pushbutton.h"
 #include "src/Gui/Pixmap.h"
@@ -46,6 +47,7 @@ extern "C" {
         auto label = Label::_DEFINITION();
         auto lineEdit = LineEdit::_DEFINITION();
         auto mainwindow = MainWindow::_DEFINITION();
+        auto progressbar = ProgressBar::_DEFINITION();
         auto pushbutton = PushButton::_DEFINITION();
         auto textedit = TextEdit::_DEFINITION();
 
@@ -64,6 +66,7 @@ extern "C" {
         label.extends(widget);
         mainwindow.extends(widget);
         pushbutton.extends(widget);
+        progressbar.extends(widget);
         textedit.extends(widget);
         lineEdit.extends(widget);
 
@@ -85,6 +88,7 @@ extern "C" {
             .add(lineEdit)
             .add(mainwindow)
             .add(pushbutton)
+            .add(progressbar)
             .add(textedit)
             .add(pixmap)
             .add(icon);
