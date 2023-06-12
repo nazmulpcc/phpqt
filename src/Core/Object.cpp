@@ -119,8 +119,8 @@ Php::Value Object::startTimer(Php::Parameters &params)
         callback = params[1];
         type = Qt::CoarseTimer;
     }else{
-        auto callback = params[2];
-        auto type = static_cast<Qt::TimerType>(params[1].numericValue());
+        callback = params[2];
+        type = static_cast<Qt::TimerType>(params[1].numericValue());
     }
     
     TimerObject *timerObject = new TimerObject(this->native);

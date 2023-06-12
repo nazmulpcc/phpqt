@@ -16,9 +16,8 @@ void Label::__construct(Php::Parameters &params)
 Php::Value Label::pixmap()
 {
     auto pixmap = new Pixmap;
-    auto nativePixmap = const_cast<QPixmap*>(this->native->pixmap());
-    // auto temp = new QPixmap(*);
-    pixmap->setNative(nativePixmap);
+    auto nativePixmap = this->native->pixmap(Qt::ReturnByValue);
+    pixmap->setNative(&nativePixmap);
     return Php::Object(Pixmap::CLASSPATH, pixmap);
 }
 
