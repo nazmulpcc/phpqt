@@ -4,16 +4,16 @@ This is a "Proof of concept" of a [QT](https://qt.io) binding for PHP 8+.
 
 ## Steps to Run
 
-This is a PHP extension developed in C++ and currently tested on MacOS and Linux. Since PHP doesn't support C++ and the extension development process has very limited documentation, I've used [PHP-CPP](https://www.php-cpp.com/) library to develop this POC. The [original library](https://github.com/CopernicaMarketingSoftware/PHP-CPP) doesn't support PHP 8 though, so I've used [this fork](https://github.com/NobletSolutions/PHP-CPP). You can run the following commands to compile PHP-CPP,
+This is a PHP extension developed in C++ and currently tested on MacOS and Linux. Since PHP doesn't support C++ and the extension development process has very limited documentation, I've used [PHP-CPP](https://www.php-cpp.com/) library to develop this POC. You can run the following commands to compile PHP-CPP,
 
 ```sh
-git clone https://github.com/NobletSolutions/PHP-CPP.git
+git clone https://github.com/CopernicaMarketingSoftware/PHP-CPP.git
 cd PHP-CPP
-git checkout php82
+git checkout master
 make && sudo make install
 ```
 
-This will clone, compile & install PHP-CPP in your system. Note that if you are not using PHP 8.2, you need to check out the correct branch `php80` or `php81`. You will also need `make` and `g++` commands installed.
+This will clone, compile & install PHP-CPP in your system. You will also need `make` and `g++` commands installed.
 
 Now before you compile this extension, you need to install `qt5` and headers. This can be done with,
 
