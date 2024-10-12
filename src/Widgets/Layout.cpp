@@ -2,7 +2,8 @@
 #include <QtWidgets/QLayout>
 #include "widget.h"
 
-void Layout::setNative(QLayout *n) {
+void Layout::setNative(QLayout *n)
+{
     this->native = n;
     Object::setNative(n);
 }
@@ -22,16 +23,20 @@ Php::Value Layout::getContentsMargins(Php::Parameters &params)
 {
     int left, top, right, bottom;
     this->native->getContentsMargins(&left, &top, &right, &bottom);
-    if (params.size() > 0) {
+    if (params.size() > 0)
+    {
         params[0] = left;
     }
-    if (params.size() > 1) {
+    if (params.size() > 1)
+    {
         params[1] = top;
     }
-    if (params.size() > 2) {
+    if (params.size() > 2)
+    {
         params[2] = right;
     }
-    if (params.size() > 3) {
+    if (params.size() > 3)
+    {
         params[3] = bottom;
     }
     Php::Value returnValue = {left, top, right, bottom};
@@ -46,12 +51,15 @@ Php::Value Layout::isEnabled()
 
 Php::Value Layout::menuBar()
 {
-    return Php::Object(Widget::CLASSPATH.c_str(), this->native->menuBar());
+    // TODO: Implement Menubar
 }
 
 Php::Value Layout::parentWidget()
 {
-    return Php::Object(Widget::CLASSPATH.c_str(), this->native->menuBar());
+    auto parent = this->native->parentWidget();
+    auto widget = new Widget;
+    widget->setNative(parent);
+    return Php::Object(Widget::CLASSPATH.c_str(), widget);
 }
 
 void Layout::removeItem(Php::Parameters &params)
@@ -68,7 +76,7 @@ void Layout::removeWidget(Php::Parameters &params)
 Php::Value Layout::setAlignment(Php::Parameters &params)
 {
     auto widget = params[0].implementation<Widget>();
-    auto alignment = static_cast<Qt::Alignment>((int) params[1].numericValue());
+    auto alignment = static_cast<Qt::Alignment>((int)params[1].numericValue());
     return this->native->setAlignment(widget->getNative(), alignment);
 }
 
@@ -78,8 +86,7 @@ void Layout::setContentsMargins(Php::Parameters &params)
         params[0].numericValue(),
         params[1].numericValue(),
         params[2].numericValue(),
-        params[3].numericValue()
-    );
+        params[3].numericValue());
 }
 
 void Layout::setEnabled(Php::Parameters &params)
@@ -105,7 +112,7 @@ void Layout::setSpacing(Php::Parameters &params)
 
 Php::Value Layout::sizeConstraint()
 {
-    return Php::Value((int) this->native->sizeConstraint());
+    return Php::Value((int)this->native->sizeConstraint());
 }
 
 Php::Value Layout::spacing()
