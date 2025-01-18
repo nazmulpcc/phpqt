@@ -24,6 +24,8 @@ public:
 
     void onLoadFinished(Php::Parameters &params);
     void onPdfPrintingFinished(Php::Parameters &params);
+    void onUrlChanged(Php::Parameters &params);
+    void onTitleChanged(Php::Parameters &params);
 
     Php::Value
     url(Php::Parameters &params);
@@ -40,6 +42,8 @@ public:
         // signals
         definition.method<&WebEngineView::onLoadFinished>("onLoadFinished", {Php::ByVal("callback", Php::Type::Callable, true)});
         definition.method<&WebEngineView::onPdfPrintingFinished>("onPdfPrintingFinished", {Php::ByVal("callback", Php::Type::Callable, true)});
+        definition.method<&WebEngineView::onUrlChanged>("onUrlChanged", {Php::ByVal("callback", Php::Type::Callable, true)});
+        definition.method<&WebEngineView::onTitleChanged>("onTitleChanged", {Php::ByVal("callback", Php::Type::Callable, true)});
 
         definition.method<&WebEngineView::url>("url");
         definition.method<&WebEngineView::title>("title");

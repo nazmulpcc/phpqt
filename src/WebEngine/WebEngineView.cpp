@@ -48,6 +48,20 @@ void WebEngineView::onPdfPrintingFinished(Php::Parameters &params)
                           { callback(Php::Value(filePath.toStdString()), Php::Value(ok)); });
 }
 
+void WebEngineView::onUrlChanged(Php::Parameters &params)
+{
+    Php::Value callback = params[0];
+    this->native->connect(this->native, &QWebEngineView::urlChanged, [callback](const QUrl &url)
+                          { callback(Php::Value(url.toString().toStdString())); });
+}
+
+void WebEngineView::onTitleChanged(Php::Parameters &params)
+{
+    Php::Value callback = params[0];
+    this->native->connect(this->native, &QWebEngineView::titleChanged, [callback](const QString &title)
+                          { callback(Php::Value(title.toStdString())); });
+}
+
 Php::Value WebEngineView::url(Php::Parameters &params)
 {
     return Php::Value(this->native->url().toString().toStdString());
