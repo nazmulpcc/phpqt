@@ -23,8 +23,10 @@ public:
     void printToPdf(Php::Parameters &params);
 
     void onLoadFinished(Php::Parameters &params);
+    void onPdfPrintingFinished(Php::Parameters &params);
 
-    Php::Value url(Php::Parameters &params);
+    Php::Value
+    url(Php::Parameters &params);
     Php::Value title(Php::Parameters &params);
 
     static Php::Class<WebEngineView> _DEFINITION()
@@ -37,6 +39,7 @@ public:
 
         // signals
         definition.method<&WebEngineView::onLoadFinished>("onLoadFinished", {Php::ByVal("callback", Php::Type::Callable, true)});
+        definition.method<&WebEngineView::onPdfPrintingFinished>("onPdfPrintingFinished", {Php::ByVal("callback", Php::Type::Callable, true)});
 
         definition.method<&WebEngineView::url>("url");
         definition.method<&WebEngineView::title>("title");

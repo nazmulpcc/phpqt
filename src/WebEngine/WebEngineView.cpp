@@ -41,6 +41,13 @@ void WebEngineView::onLoadFinished(Php::Parameters &params)
                           { callback(Php::Value(ok)); });
 }
 
+void WebEngineView::onPdfPrintingFinished(Php::Parameters &params)
+{
+    Php::Value callback = params[0];
+    this->native->connect(this->native, &QWebEngineView::pdfPrintingFinished, [callback](const QString &filePath, bool ok)
+                          { callback(Php::Value(filePath.toStdString()), Php::Value(ok)); });
+}
+
 Php::Value WebEngineView::url(Php::Parameters &params)
 {
     return Php::Value(this->native->url().toString().toStdString());

@@ -5,13 +5,17 @@
 void Application::__construct()
 {
     int argc = 1;
-    char *argv[] = {(char *)"php-cpp"};
-    Php::out << "Before app\n";
+    // without one argument, QApplication crashes randomly, specially for webengine.
+    char *argv[] = {(char *)"phpqt"};
     this->native = new QApplication(argc, argv);
-    Php::out << "After app\n";
 }
 
 Php::Value Application::exec()
 {
     return {QApplication::exec()};
+}
+
+void Application::quit()
+{
+    this->native->quit();
 }
