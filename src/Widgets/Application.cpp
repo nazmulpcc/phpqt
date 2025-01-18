@@ -4,8 +4,8 @@
 
 void Application::__construct()
 {
-    int argc = 0;
-    char *argv[] = {};
+    int argc = 1;
+    char *argv[] = {(char *)"php-cpp"};
     Php::out << "Before app\n";
     this->native = new QApplication(argc, argv);
     Php::out << "After app\n";

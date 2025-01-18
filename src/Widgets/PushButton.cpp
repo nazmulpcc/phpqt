@@ -43,5 +43,5 @@ void PushButton::onReleased(Php::Parameters &params)
     Php::Value callback = params[0];
     this->native->connect(this->native, &QPushButton::released, [callback]{
         callback();
-    });;
+    });
 }

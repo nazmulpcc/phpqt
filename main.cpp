@@ -20,6 +20,7 @@
 #include "src/Widgets/pushbutton.h"
 #include "src/Gui/Pixmap.h"
 #include "src/Gui/Icon.h"
+#include "src/WebEngine/WebEngineView.h"
 
 class PhpQApplication
 {
@@ -56,6 +57,8 @@ extern "C"
         auto pixmap = Pixmap::_DEFINITION();
         auto icon = Icon::_DEFINITION();
 
+        auto webengineview = WebEngineView::_DEFINITION();
+
         widget.extends(object);
         layout.extends(object);
         timerevent.extends(event);
@@ -71,6 +74,8 @@ extern "C"
         progressbar.extends(widget);
         textedit.extends(widget);
         lineEdit.extends(widget);
+
+        webengineview.extends(widget);
 
         extension
             .add(qt)
@@ -93,7 +98,8 @@ extern "C"
             .add(progressbar)
             .add(textedit)
             .add(pixmap)
-            .add(icon);
+            .add(icon)
+            .add(webengineview);
 
         return extension;
     }
