@@ -5,7 +5,7 @@
 #include "src/Core/Object.h"
 #include "src/Core/Size.h"
 #include "src/Core/Thread.h"
-#include "src/Widgets/Action.h"
+#include "src/Core/Action.h"
 #include "src/Widgets/application.h"
 #include "src/Widgets/BoxLayout.h"
 #include "src/Widgets/VBoxLayout.h"
@@ -22,9 +22,11 @@
 #include "src/Gui/Icon.h"
 
 class PhpQApplication
-{};
+{
+};
 
-extern "C" {
+extern "C"
+{
     PHPCPP_EXPORT void *get_module()
     {
         static Php::Extension extension("phpqt", "1.0");

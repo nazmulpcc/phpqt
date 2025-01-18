@@ -15,12 +15,12 @@ make && sudo make install
 
 This will clone, compile & install PHP-CPP in your system. You will also need `make` and `g++` commands installed.
 
-Now before you compile this extension, you need to install `qt5` and headers. This can be done with,
+Now before you compile this extension, you need to install `qt6` and headers. This can be done with,
 
 ```sh
-brew install qt@5
+brew install qt@6
 # OR for arch-based distro
-sudo pacman -S qt5-base
+sudo pacman -S qt6-base
 ```
 
 Go ahead and compile this repo,

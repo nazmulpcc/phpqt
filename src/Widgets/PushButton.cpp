@@ -25,17 +25,23 @@ void PushButton::__construct(Php::Parameters &params)
 void PushButton::onPressed(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::pressed, callback);
+    this->native->connect(this->native, &QPushButton::pressed, [callback]{
+        callback();
+    });
 }
 
 void PushButton::onClicked(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::clicked, callback);
+    this->native->connect(this->native, &QPushButton::clicked, [callback]{
+        callback();
+    });
 }
 
 void PushButton::onReleased(Php::Parameters &params)
 {
     Php::Value callback = params[0];
-    this->native->connect(this->native, &QPushButton::released, callback);
+    this->native->connect(this->native, &QPushButton::released, [callback]{
+        callback();
+    });;
 }

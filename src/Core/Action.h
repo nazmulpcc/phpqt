@@ -3,7 +3,7 @@
 
 #include "../Core/Object.h"
 #include <phpcpp.h>
-#include <QtWidgets/QAction>
+#include <QAction>
 
 class Action : public Object
 {
@@ -11,7 +11,7 @@ private:
     QAction *native;
 
 public:
-    inline static const char *CLASSPATH = "Qt\\Widgets\\Action";
+    inline static const char *CLASSPATH = "Qt\\Core\\Action";
 
     QAction *getNative();
     void setNative(QAction *n);

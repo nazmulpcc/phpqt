@@ -52,7 +52,7 @@ LINKER = g++
 #   with a list of all flags that should be passed to the linker.
 #
 
-QT_FLAGS            = $(shell pkg-config --cflags --libs Qt5Widgets)
+QT_FLAGS            = $(shell pkg-config --cflags --libs Qt6Widgets)
 COMPILER_FLAGS      =   -Wall -c -O2 -std=c++17 -fpic -v
 LINKER_FLAGS        =   -shared -v
 LINKER_DEPENDENCIES =   -lphpcpp
