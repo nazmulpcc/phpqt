@@ -3,7 +3,7 @@
 
 #include <phpcpp.h>
 #include "../Widgets/widget.h"
-#include <QWebEngineView>
+#include <QtWebEngineWidgets/QWebEngineView>
 #include <QString>
 #include <QUrl>
 
