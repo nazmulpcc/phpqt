@@ -10,15 +10,9 @@ void WebEngineView::setNative(QWebEngineView *n)
     this->native = n;
 }
 
-void WebEngineView::__construct(Php::Parameters &params)
+void WebEngineView::__construct()
 {
-    QWidget *parent = nullptr;
-    if (params.size() > 0)
-    {
-        Widget *temp = params[0].implementation<Widget>();
-        parent = temp->getNative();
-    }
-    this->native = new QWebEngineView(parent);
+    this->native = new QWebEngineView();
     setNative(this->native);
 }
 

@@ -18,7 +18,7 @@ public:
     QWebEngineView *getNative();
     void setNative(QWebEngineView *n);
 
-    void __construct(Php::Parameters &params);
+    void __construct();
     void setUrl(Php::Parameters &params);
     void printToPdf(Php::Parameters &params);
 
